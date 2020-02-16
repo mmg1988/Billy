@@ -20,7 +20,7 @@
         <version>3.2.3</version>
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
-          <excludes>**/test/*.class</excludes>
+          <excludes>**/tests/*.class</excludes>
         </configuration>
       </plugin>
     </plugins>
