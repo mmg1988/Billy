@@ -13,6 +13,7 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+          <excludes>**/test/*.class</excludes>
         </configuration>
       </plugin>
       <plugin>
@@ -20,7 +21,6 @@
         <version>3.2.3</version>
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
-          <excludes>**/tests/*.class</excludes>
         </configuration>
       </plugin>
     </plugins>
