@@ -15,6 +15,7 @@ import org.glassfish.jersey.server.spi.ContainerLifecycleListener;
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 import billy.commands.CommandDispatcher;
 import billy.commands.CommandHandlerFactory;
@@ -50,7 +51,7 @@ public class BillyApplication extends ResourceConfig {
     
 	@SuppressWarnings("serial")
 	public BillyApplication() {
-		MongoClient mongoClient = new MongoClient(System.getenv("MONGODB_URI"));
+		MongoClient mongoClient = new MongoClient(new MongoClientURI(System.getenv("MONGODB_URI") != null ? System.getenv("MONGODB_URI") : "mongodb://localhost:27017"));
 		EventBus eventBus = new AsyncEventBus(newSingleThreadExecutor());
         Map<Class<?>, Class<?>> commandHandlers = new HashMap<Class<?>, Class<?>>() {
         	{
