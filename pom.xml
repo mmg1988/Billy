@@ -6,14 +6,6 @@
   <packaging>war</packaging>
   <build>
     <sourceDirectory>src</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>src</directory>
-        <excludes>
-          <exclude>billy/tests/*.java</exclude>
-        </excludes>
-      </resource>
-    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -21,7 +13,6 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-          <excludes>**/test/*.class</excludes>
         </configuration>
       </plugin>
       <plugin>
@@ -64,7 +55,7 @@
     	<groupId>junit</groupId>
     	<artifactId>junit</artifactId>
     	<version>4.12</version>
-    	<scope>test</scope>
+    	<scope>compile</scope>
 	</dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
@@ -76,7 +67,7 @@
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
         <version>5.6.0</version>
-        <scope>test</scope>
+        <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>
