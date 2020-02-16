@@ -25,24 +25,11 @@
       <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>3.0.0-M3</version>
       </plugin>
     </plugins>
   </build>
-  
-  
-	<dependencyManagement>
-	  <dependencies>
-	    <dependency>
-	    <groupId>org.junit</groupId>
-	    <artifactId>junit-bom</artifactId>
-	    <version>5.6.0</version>
-	    <type>pom</type>
-	    <scope>import</scope>
-	    </dependency>
-	  </dependencies>
-	</dependencyManagement>
-  
+ 
   <dependencies>
   	<dependency>
 		<groupId>javax.ws.rs</groupId>
@@ -81,6 +68,12 @@
         <version>5.6.0</version>
         <scope>test</scope>
     </dependency>
+	<dependency>
+	    <groupId>org.junit.vintage</groupId>
+	    <artifactId>junit-vintage-engine</artifactId>
+	    <version>5.6.0</version>
+	    <scope>test</scope>
+	</dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
