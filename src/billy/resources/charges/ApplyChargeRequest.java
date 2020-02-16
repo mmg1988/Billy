@@ -3,16 +3,20 @@ package billy.resources.charges;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import billy.domain.ChargeType;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import billy.domain.Currency;
 
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ApplyChargeRequest {
 
 	private long eventId;
 	private long userId;
 	private BigDecimal amount;
 	private Currency currency;
-	private ChargeType eventType;
+	private String eventType;
 	private Date date;
 	
 	public ApplyChargeRequest() {
@@ -43,10 +47,10 @@ public class ApplyChargeRequest {
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
-	public ChargeType getEventType() {
+	public String getEventType() {
 		return eventType;
 	}
-	public void setEventType(ChargeType eventType) {
+	public void setEventType(String eventType) {
 		this.eventType = eventType;
 	}
 	public Date getDate() {

@@ -1,24 +1,22 @@
 package billy.eventhandlers.account;
 
-import java.util.ArrayList;
+import org.glassfish.hk2.api.ServiceLocator;
 
 import com.google.common.eventbus.Subscribe;
 
-import billy.events.account.ChargeAppliedEvent;
 import billy.events.account.PaymentAppliedEvent;
-import billy.models.ChargeModel;
 import billy.models.PaymentModel;
-import billy.resources.charges.ChargeRepository;
+import billy.resources.accounts.AccountRepository;
 import billy.resources.payments.PaymentRepository;
 
 public class PaymentAppliedEventHandler {
 	
-	private ChargeRepository chargeRepository;
+	private AccountRepository accountRepository;
 	private PaymentRepository paymentRepository;
 	
-	public PaymentAppliedEventHandler(ChargeRepository chargeRepository, PaymentRepository paymentRepository) {
-		this.chargeRepository = chargeRepository;
-		this.paymentRepository = paymentRepository;
+	public PaymentAppliedEventHandler(ServiceLocator serviceLocator) {
+		this.accountRepository = serviceLocator.createAndInitialize(AccountRepository.class);;
+		this.paymentRepository = serviceLocator.createAndInitialize(PaymentRepository.class);;
 	}
 	
 	@Subscribe
@@ -28,6 +26,8 @@ public class PaymentAppliedEventHandler {
 				event.getAmount(),
 				event.getCurrency(),
 				event.getTimestamp(),
-				new ArrayList<ChargeModel>()));
+				event.getPaidCharges()));
+		
+		accountRepository.updateBalance(event.getAggregateId(), event.getBalance());
 	}
 }

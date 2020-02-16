@@ -2,26 +2,40 @@ package billy.aggregates.account;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.UUID;
 
 import billy.domain.ChargeType;
 import billy.domain.Currency;
 
 public class Charge {
 
+	private UUID id;
 	private long eventId;
 	private BigDecimal amount;
 	private Currency currency;
 	private ChargeType type;
 	private Date eventDate;
 	private BigDecimal balance;
+	
+	protected Charge() {
+	}
 
-	public Charge(long eventId, BigDecimal amount, Currency currency, ChargeType type, Date eventDate) {
+	public Charge(UUID id, long eventId, BigDecimal amount, Currency currency, ChargeType type, Date eventDate) {
+		this.id = id;
 		this.eventId = eventId;
 		this.amount = amount;
 		this.currency = currency;
 		this.type = type;
 		this.eventDate = eventDate;
 		this.balance = amount;
+	}
+	
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
 	}
 	
 	public long getEventId() {
@@ -51,6 +65,7 @@ public class Charge {
 	public ChargeType getType() {
 		return type;
 	}
+	
 	public void setType(ChargeType type) {
 		this.type = type;
 	}

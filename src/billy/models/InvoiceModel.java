@@ -4,29 +4,29 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class InvoiceModel {
 
-	private long id;
 	private int period;
 	private long userId;
 	private List<ChargeModel> charges = new ArrayList<>();
 	private List<PaymentModel> payments = new ArrayList<>();
 	private BigDecimal amount;
+	private BigDecimal paymentAmount;
+	
+	protected InvoiceModel() { }
 
-	public InvoiceModel(int period, long userId, List<ChargeModel> charges, List<PaymentModel> payments) {
+	public InvoiceModel(long userId, int period, List<ChargeModel> charges, List<PaymentModel> payments) {
 		super();
 		this.period = period;
 		this.userId = userId;
 		this.charges = charges;
 		this.payments = payments;
-	}
-	
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
+		this.amount = charges.stream().map(c -> c.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+		this.paymentAmount = payments.stream().map(c -> c.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
 	public int getPeriod() {
@@ -67,6 +67,14 @@ public class InvoiceModel {
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+	
+	public BigDecimal getPaymentAmount() {
+		return paymentAmount;
+	}
+
+	public void setPaymentAmount(BigDecimal paymentAmount) {
+		this.paymentAmount = paymentAmount;
 	}
 	
 }

@@ -2,21 +2,28 @@ package billy.models;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class AccountModel {
 	
-	private long id;
+	private long userId;
 	private BigDecimal balance;
 	
-	public AccountModel() {
-		
+	protected AccountModel() { }
+	
+	public AccountModel(long userId, BigDecimal balance) {
+		this.userId = userId;
+		this.balance = balance;
 	}
 	
-	public long getId() {
-		return id;
+	public long getUserId() {
+		return userId;
 	}
 	
-	public void setId(long id) {
-		this.id = id;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 	
 	public BigDecimal getBalance() {

@@ -7,6 +7,9 @@ public class Payment {
 
 	private BigDecimal amount;
 	private Currency currency;
+	
+	protected Payment() {
+	}
 
 	public Payment(BigDecimal amount, Currency currency) {
 		this.amount = amount;

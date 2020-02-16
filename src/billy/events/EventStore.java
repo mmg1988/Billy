@@ -5,7 +5,6 @@ import java.util.List;
 public interface EventStore {
 	
 	List<Event> getStream(long aggregateId);
-	void add(long aggreagteId, List<Event> events);
-	void save();
+	void store(long aggreagteId, List<Event> events);
 	
 }

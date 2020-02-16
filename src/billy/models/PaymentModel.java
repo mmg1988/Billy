@@ -4,9 +4,15 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import billy.domain.Currency;
+import billy.domain.InvoiceUtils;
 
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class PaymentModel {
 
 	private int period;
@@ -14,14 +20,17 @@ public class PaymentModel {
 	private BigDecimal amount;
 	private Currency currency;
 	private Date timestamp;
-	private List<ChargeModel> charges = new ArrayList<>();
+	private List<UUID> charges = new ArrayList<>();
 	
-	public PaymentModel(long userId, BigDecimal amount, Currency currency, Date timestamp, List<ChargeModel> charges) {
+	protected PaymentModel() { }
+	
+	public PaymentModel(long userId, BigDecimal amount, Currency currency, Date timestamp, List<UUID> charges) {
 		this.userId = userId;
 		this.amount = amount;
 		this.currency = currency;
 		this.timestamp = timestamp;
 		this.charges = charges;
+		this.period = InvoiceUtils.getPeriod(timestamp);
 	}
 	
 	public int getPeriod() {
@@ -64,11 +73,11 @@ public class PaymentModel {
 		this.timestamp = timestamp;
 	}
 	
-	public List<ChargeModel> getCharges() {
+	public List<UUID> getCharges() {
 		return charges;
 	}
 	
-	public void setCharges(List<ChargeModel> charges) {
+	public void setCharges(List<UUID> charges) {
 		this.charges = charges;
 	}
 	
