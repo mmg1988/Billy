@@ -50,7 +50,7 @@ public class BillyApplication extends ResourceConfig {
     
 	@SuppressWarnings("serial")
 	public BillyApplication() {
-		MongoClient mongoClient = new MongoClient();
+		MongoClient mongoClient = new MongoClient(System.getenv("MONGODB_URI"));
 		EventBus eventBus = new AsyncEventBus(newSingleThreadExecutor());
         Map<Class<?>, Class<?>> commandHandlers = new HashMap<Class<?>, Class<?>>() {
         	{
