@@ -17,10 +17,12 @@ public class CommandDispatcher {
 		CommandHandler<Command<TResponse>, TResponse> commandHandler = factory.create(command);
 		for (int attempt = 1; ; ++attempt) {
 			try {
-				commandHandler.handle(command);	
+				return commandHandler.handle(command);	
 			} catch(OptimisticLockingException ex) {
 				if (attempt == 3)
 					throw ex;
+			} catch(Exception ex) {
+				throw ex;
 			}
 		}
 	}
