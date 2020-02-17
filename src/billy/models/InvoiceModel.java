@@ -7,7 +7,10 @@ import java.util.List;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import io.swagger.annotations.ApiModel;
+
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@ApiModel()
 public class InvoiceModel {
 
 	private int period;

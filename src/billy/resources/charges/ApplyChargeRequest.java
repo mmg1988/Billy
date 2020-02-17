@@ -8,8 +8,11 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import billy.domain.Currency;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@ApiModel
 public class ApplyChargeRequest {
 
 	private long eventId;
@@ -47,6 +50,7 @@ public class ApplyChargeRequest {
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
+	@ApiModelProperty(allowableValues = "CLASIFICADO,VENTA,PUBLICIDAD,ENVIO,CREDITO,MERCADOPAGO,MERCADOSHOP,FIDELIDAD")
 	public String getEventType() {
 		return eventType;
 	}

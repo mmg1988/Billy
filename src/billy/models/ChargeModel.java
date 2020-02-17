@@ -15,8 +15,10 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import billy.domain.ChargeType;
 import billy.domain.Currency;
 import billy.domain.InvoiceUtils;
+import io.swagger.annotations.ApiModel;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@ApiModel()
 public class ChargeModel {
 
 	private UUID id;

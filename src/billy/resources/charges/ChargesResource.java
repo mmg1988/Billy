@@ -15,12 +15,14 @@ import javax.ws.rs.core.Response;
 import billy.commands.CommandDispatcher;
 import billy.commands.account.ApplyChargeCommand;
 import billy.domain.ChargeType;
+import billy.models.ChargeModel;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
-@Api
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/charges")
+@Api(value = "Cargos")
 public class ChargesResource {
 
 	@Inject
@@ -31,11 +33,13 @@ public class ChargesResource {
 	
 	@GET
 	@Path("/{userId}")
+	@ApiOperation(value = "Obtener los cargos de un usuario", response = ChargeModel.class, responseContainer = "Array")
 	public Response get(@PathParam("userId") long userId) {
 		return Response.ok(chargeRepository.getByUserId(userId)).build();
 	}
 	
 	@POST
+	@ApiOperation(value = "Agregar cargo a un usuario")
 	public Response post(ApplyChargeRequest request) {
 		dispatcher.dispatch(new ApplyChargeCommand(request.getEventId(), 
 				request.getAmount(), 
