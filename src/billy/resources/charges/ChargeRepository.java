@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import org.bson.Document;
 import org.bson.types.Decimal128;
 
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Aggregates;
 
@@ -21,8 +21,8 @@ import billy.mongo.MongoRepository;
 public class ChargeRepository extends MongoRepository<ChargeModel> {
 
 	@Inject
-	public ChargeRepository(MongoClient client) {
-		super(client, ChargeModel.class, "charges");
+	public ChargeRepository(MongoDatabase db) {
+		super(db, ChargeModel.class, "charges");
 	}
 
 	public List<ChargeModel> getByUserId(long userId) {

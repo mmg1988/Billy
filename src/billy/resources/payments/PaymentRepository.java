@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import org.bson.Document;
 import org.bson.types.Decimal128;
 
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Aggregates;
 
@@ -22,8 +22,8 @@ import billy.mongo.MongoRepository;
 public class PaymentRepository extends MongoRepository<PaymentModel> {
 
 	@Inject
-	public PaymentRepository(MongoClient client) {
-		super(client, PaymentModel.class, "payments");
+	public PaymentRepository(MongoDatabase db) {
+		super(db, PaymentModel.class, "payments");
 	}
 	
 	public List<PaymentModel> getByUserId(long userId) {

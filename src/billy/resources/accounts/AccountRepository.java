@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
 
 import billy.models.AccountModel;
 import billy.mongo.MongoRepository;
@@ -16,8 +16,8 @@ import billy.resources.UserNotFoundException;
 public class AccountRepository extends MongoRepository<AccountModel> {
 	
 	@Inject
-	public AccountRepository(MongoClient client) {
-		super(client, AccountModel.class, "accounts");
+	public AccountRepository(MongoDatabase db) {
+		super(db, AccountModel.class, "accounts");
 	}
 
 	public AccountModel get(long id) {

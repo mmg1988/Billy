@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
 
 import static com.mongodb.client.model.Filters.*;
 
@@ -19,8 +19,8 @@ public class MongoEventStore extends MongoRepository<Event> implements EventStor
 	private AggregateVersionRegistry versionRegistry;
 	
 	@Inject
-	public MongoEventStore(MongoClient client) {
-		super(client, Event.class, "events");
+	public MongoEventStore(MongoDatabase db) {
+		super(db, Event.class, "events");
 	}
 
 	@Override

@@ -15,7 +15,9 @@ import javax.ws.rs.core.Response;
 import billy.commands.CommandDispatcher;
 import billy.commands.account.ApplyChargeCommand;
 import billy.domain.ChargeType;
+import io.swagger.annotations.Api;
 
+@Api
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/charges")
