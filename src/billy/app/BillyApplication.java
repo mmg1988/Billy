@@ -36,6 +36,7 @@ import billy.mongo.MongoEventStore;
 import billy.resources.OptimisticLockingExceptionMapper;
 import billy.resources.StaticResource;
 import billy.resources.UnsupportedOperationExceptionMapper;
+import billy.resources.UserNotFoundExceptionMapper;
 import billy.resources.accounts.AccountRepository;
 import billy.resources.accounts.AccountsResource;
 import billy.resources.charges.ChargeRepository;
@@ -95,6 +96,7 @@ public class BillyApplication extends ResourceConfig {
         // exceptions
         register(OptimisticLockingExceptionMapper.class);
         register(UnsupportedOperationExceptionMapper.class);
+        register(UserNotFoundExceptionMapper.class);
         
         // resources
 		register(StaticResource.class);
